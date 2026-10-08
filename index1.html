@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Required for media queries to work on phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dayfold: an AI study planner for students</title>
+  <meta name="description" content="Dayfold turns your assignments, deadlines and the hours you actually have into a study plan for today.">
+
+  <!-- Apply saved theme and the "js" flag before the page paints, so there is no flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dayfold-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body id="top">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#top" aria-label="Dayfold home">
+        <svg class="brand-mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+          <rect x="3" y="5" width="26" height="23" rx="5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M3 12h26" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M10 3v5M22 3v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M10 20l4 4 8-8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Dayfold
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#try">Try it</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li class="nav-join"><a class="btn btn-small btn-mark" href="#waitlist">Join waitlist</a></li>
+        </ul>
+      </nav>
+
+      <div class="bar-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a class="btn btn-small btn-mark nav-cta" href="#waitlist">Join waitlist</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Turn a pile of deadlines into a plan for today.</h1>
+          <p class="lede">Dayfold is an AI study planner for students. Tell it what is due and how many hours you have, and it lays out today's study blocks, breaks included. You open it, you start.</p>
+          <div class="actions">
+            <a class="btn btn-mark" href="#waitlist">Join the waitlist</a>
+            <a class="btn btn-ghost" href="#try">Try the planner</a>
+          </div>
+          <p class="hero-note">Free for students. No card needed.</p>
+        </div>
+
+        <figure class="notebook">
+          <div class="notebook-body" aria-hidden="true">
+            <p class="sticky">3 things due this week</p>
+            <p class="notebook-title">Today</p>
+
+            <div class="nb-row">
+              <span class="nb-time">4:00 PM</span>
+              <span class="nb-task"><span class="mark">Maths problem set</span></span>
+              <span class="nb-len">50 min</span>
+            </div>
+            <div class="nb-row">
+              <span class="nb-time">5:00 PM</span>
+              <span class="nb-task"><span class="mark">Chemistry lab report</span></span>
+              <span class="nb-len">1 h</span>
+            </div>
+            <div class="nb-row">
+              <span class="nb-time">6:10 PM</span>
+              <span class="nb-task"><span class="mark">Read history chapter 6</span></span>
+              <span class="nb-len">40 min</span>
+            </div>
+            <p class="nb-later">Moves to tomorrow: essay outline</p>
+          </div>
+          <figcaption class="visually-hidden">Example plan for today: maths problem set at 4:00 PM, chemistry lab report at 5:00 PM and history reading at 6:10 PM. The essay outline moves to tomorrow.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="features-title">A plan you can actually follow</h2>
+          <p class="lede">Most planners show you everything at once. Dayfold shows you what to do next, and fits it into the time you have.</p>
+        </div>
+
+        <ul class="feature-grid">
+          <li class="feature feature-wide tone-mark">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>Deadline-aware ordering</h3>
+            <p>Dayfold looks at what is due and when, then puts the closest deadline first. Overdue work is flagged so it never hides at the bottom of a list.</p>
+            <div class="due-bars" aria-hidden="true">
+              <div class="due-row"><span>Due today</span><span class="bar-fill" style="--w: 92%"></span></div>
+              <div class="due-row"><span>Due Friday</span><span class="bar-fill" style="--w: 60%"></span></div>
+              <div class="due-row"><span>Due next week</span><span class="bar-fill" style="--w: 28%"></span></div>
+            </div>
+          </li>
+
+          <li class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>Plans around your hours</h3>
+            <p>Say you have three hours after class. The plan fits into three hours, not ten.</p>
+          </li>
+
+          <li class="feature tone-pen">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="3" y="11" width="12" height="5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="3" y="18" width="7" height="3" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <h3>Breaks built in</h3>
+            <p>Every study block ends with a 10-minute break, so the plan is one you can keep up.</p>
+          </li>
+
+          <li class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>One list for today</h3>
+            <p>Open the app and see only today. Everything else waits until tomorrow.</p>
+          </li>
+
+          <li class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>Weekly look-back</h3>
+            <p>On Sunday, see what you finished and what slipped, then carry it into next week.</p>
+          </li>
+
+          <li class="feature feature-wide tone-mark">
+            <svg class="feature-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M6 17V11a6 6 0 1 1 12 0v6l2 2H4l2-2ZM10 21a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>Quiet reminders</h3>
+            <p>One nudge when a block starts. No streak guilt and no pile of notifications.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section section-card" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="how-title">From messy list to plan in three steps</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div>
+              <h3>Add what is on your plate</h3>
+              <p>Type each task with a due date and how long it will take.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div>
+              <h3>Say how much time you have</h3>
+              <p>Set the time you start and the hours you can study today.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div>
+              <h3>Follow the plan</h3>
+              <p>Dayfold orders your tasks and adds breaks. Anything that does not fit moves to tomorrow.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ LIVE DEMO ============ -->
+    <section class="section section-tint" id="try" aria-labelledby="try-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="try-title">Try the planner</h2>
+          <p class="lede">Add a few tasks, or press "Add sample tasks". This demo runs in your browser with simple sorting rules, and nothing you type is sent anywhere.</p>
+        </div>
+
+        <div class="demo-grid">
+          <!-- left: input -->
+          <div class="demo-panel">
+            <h3 class="panel-title">Your tasks</h3>
+
+            <form id="task-form" class="task-form" novalidate>
+              <div class="field field-full">
+                <label for="task-name">Task</label>
+                <input id="task-name" type="text" maxlength="60" autocomplete="off" placeholder="e.g. Physics assignment">
+              </div>
+              <div class="field">
+                <label for="task-due">Due date</label>
+                <input id="task-due" type="date">
+              </div>
+              <div class="field">
+                <label for="task-mins">Time needed (minutes)</label>
+                <input id="task-mins" type="number" inputmode="numeric" min="5" max="480" step="5" value="45">
+              </div>
+              <div class="field field-full">
+                <label for="task-prio">Priority</label>
+                <select id="task-prio">
+                  <option value="3">High</option>
+                  <option value="2" selected>Medium</option>
+                  <option value="1">Low</option>
+                </select>
+              </div>
+              <p class="field-error field-full" id="task-error" role="alert"></p>
+              <div class="form-actions field-full">
+                <button class="btn" type="submit">Add task</button>
+                <button class="btn btn-ghost" type="button" id="sample-btn">Add sample tasks</button>
+              </div>
+            </form>
+
+            <ul class="task-list" id="task-list" aria-label="Tasks you added"></ul>
+            <p class="empty-note" id="task-empty">No tasks yet. Add one above, or try the sample tasks.</p>
+
+            <div class="plan-settings">
+              <div class="field">
+                <label for="start-time">Start time</label>
+                <input id="start-time" type="time" value="16:00">
+              </div>
+              <div class="field">
+                <label for="hours">Hours you have</label>
+                <input id="hours" type="number" inputmode="decimal" min="0.5" max="12" step="0.5" value="3">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-mark" type="button" id="plan-btn">Plan my day</button>
+              <button class="btn btn-ghost" type="button" id="clear-btn">Clear all</button>
+            </div>
+          </div>
+
+          <!-- right: output -->
+          <div class="demo-panel demo-output" aria-live="polite">
+            <h3 class="panel-title">Today's plan</h3>
+            <div id="plan-output">
+              <p class="empty-note">Your plan will appear here. Add a few tasks, then press "Plan my day".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="pricing-title">Simple pricing for students</h2>
+          <p class="lede">Start free. Upgrade when you want reminders and the weekly look-back.</p>
+        </div>
+
+        <div class="billing">
+          <span class="billing-label is-active" id="lbl-monthly">Monthly</span>
+          <button class="switch" id="billing-switch" type="button" role="switch" aria-checked="false" aria-label="Bill yearly"></button>
+          <span class="billing-label" id="lbl-yearly">Yearly</span>
+          <span class="save-tag">Save 25%</span>
+        </div>
+
+        <div class="plans">
+          <article class="plan" aria-labelledby="plan-free">
+            <div class="plan-head">
+              <h3 id="plan-free">Free</h3>
+              <p class="price"><span class="amount">$0</span> <span class="per">forever</span></p>
+              <p class="billed">No card needed</p>
+            </div>
+            <ul class="plan-list">
+              <li>Up to 10 active tasks</li>
+              <li>Daily plan with breaks</li>
+              <li>Light and dark themes</li>
+            </ul>
+            <a class="btn btn-ghost" href="#waitlist">Join the waitlist</a>
+          </article>
+
+          <article class="plan plan-popular" aria-labelledby="plan-student">
+            <div class="plan-head">
+              <h3 id="plan-student">Student</h3>
+              <p class="popular-tag">Most popular</p>
+              <p class="price"><span class="amount" data-monthly="$4" data-yearly="$3">$4</span> <span class="per">per month</span></p>
+              <p class="billed" data-monthly="Billed monthly" data-yearly="$36, billed once a year">Billed monthly</p>
+            </div>
+            <ul class="plan-list">
+              <li>Unlimited tasks</li>
+              <li>Weekly look-back</li>
+              <li>Quiet reminders</li>
+            </ul>
+            <a class="btn btn-mark" href="#waitlist">Join the waitlist</a>
+          </article>
+
+          <article class="plan" aria-labelledby="plan-group">
+            <div class="plan-head">
+              <h3 id="plan-group">Study group</h3>
+              <p class="price"><span class="amount" data-monthly="$8" data-yearly="$6">$8</span> <span class="per">per month</span></p>
+              <p class="billed" data-monthly="Billed monthly" data-yearly="$72, billed once a year">Billed monthly</p>
+            </div>
+            <ul class="plan-list">
+              <li>Everything in Student</li>
+              <li>Share a plan with up to 5 friends</li>
+              <li>Group deadlines</li>
+            </ul>
+            <a class="btn btn-ghost" href="#waitlist">Join the waitlist</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section-card" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <h2 id="faq-title">Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Is Dayfold a real app?</summary>
+            <p>No. Dayfold is a fictional product made for a frontend internship project at Progree. The planner on this page runs in your browser, and nothing you type is sent anywhere.</p>
+          </details>
+          <details>
+            <summary>Does the demo use AI?</summary>
+            <p>The demo uses simple rules: nearer deadlines and higher priority go first, and tasks are packed into the hours you enter. The product pitch imagines an AI version that could also read a syllabus, but this page does not include one.</p>
+          </details>
+          <details>
+            <summary>What happens to tasks that do not fit today?</summary>
+            <p>They move to tomorrow. The plan shows them in a separate list so you can see what is waiting.</p>
+          </details>
+          <details>
+            <summary>Does it work on my phone?</summary>
+            <p>Yes. The page and the planner adjust to phones, tablets and laptops.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WAITLIST ============ -->
+    <section class="cta" id="waitlist" aria-labelledby="waitlist-title">
+      <div class="wrap cta-grid">
+        <div class="cta-copy">
+          <h2 id="waitlist-title">Get a plan before your next deadline</h2>
+          <p>Join the waitlist and we will write to you once, when Dayfold opens.</p>
+        </div>
+
+        <form class="waitlist-form" id="waitlist-form" novalidate>
+          <div class="field">
+            <label for="wl-name">Your name</label>
+            <input id="wl-name" type="text" autocomplete="name" aria-describedby="wl-name-error">
+            <p class="field-error" id="wl-name-error"></p>
+          </div>
+          <div class="field">
+            <label for="wl-email">Email address</label>
+            <input id="wl-email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="wl-email-error">
+            <p class="field-error" id="wl-email-error"></p>
+          </div>
+          <div class="field">
+            <label for="wl-level">I study at</label>
+            <select id="wl-level">
+              <option>School</option>
+              <option>College</option>
+              <option selected>University</option>
+              <option>Somewhere else</option>
+            </select>
+          </div>
+          <button class="btn btn-mark" type="submit">Join the waitlist</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand">Dayfold</p>
+        <p class="footer-note">Dayfold is a fictional product, made for a frontend internship project at Progree.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#try">Try it</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Dayfold</p>
+    </div>
+  </footer>
+
+  <!-- Success popup for the waitlist form -->
+  <dialog id="success-dialog" aria-labelledby="dialog-title">
+    <h2 id="dialog-title">You are on the list</h2>
+    <p id="dialog-text"></p>
+    <p class="dialog-note">This is a demo, so nothing was sent or saved.</p>
+    <button class="btn btn-mark" type="button" id="dialog-close">Done</button>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
